@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="./css/buytoken.css">
+    <title>Sale</title>
+    <link rel="shortcut icon" href="./images/shortcut.png">
+</head>
+
+<body>
+    <header class="w-100 fl">
+        <div class="center">
+            <img class="saleBanner fl" src="./images/saleBanner.png" alt="">
+        </div>
+    </header>
+    <section class="w-100 fl">
+        <div class="center">
+            <div class="w-100 saleList fl">
+                <div class="saleItem">
+                    <p class="i18n" name='ETHAvailableb'>ETH Available balance</p>
+                    <span id="yitaibi"></span>
+                </div>
+                <div class="saleItem">
+                    <p class="i18n" name='DEFAvailableb'>DEF Available balance</p>
+                    <span id="yue"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-100 fl">
+        <div class="center">
+            <div class="w-100 buyList fl">
+                <div class="saleWid">
+                    <p class="saleText i18n" name="InputETH">Input ETH</p>
+                    <input id="inputx" class="saleInput" oninput="inputx(this)" placeholder="Exchange quantity" type="number">
+                    <p class="saleText i18n" name="ObtainDEF">Obtain DEF</p>
+                    <input id="proportion" class="saleInput" value="0" readonly type="text">
+                    <div class="saleCon w-100 fl">
+                        <div class="w-100">
+                            <p class="qrcode" id="qrcode"></p>
+                        </div>
+                        <div class="copyText">
+                            <img onclick="copy()" src="./images/copy.png" alt="copy">
+                            <span class="i18n" name='Contractaddr'>Contract address：</span>
+                            <input class="copyInput" type="text" id="username" readonly="readonly">
+                            <p class="i18n" name='Minimum'>Minimum exchange quantity：0.1ETH</p>
+                            <p>1 ETH = 1000000 DEF</p>
+                        </div>
+                    </div>
+                    <!-- <input type="text" id="exchange" class="receiveBut receiveDis" readonly="readonly" disabled="disabled" value="Please input quantity"> -->
+                    <div  id="exchange" class="receiveBut receiveDis i18n" name='salequantity'>Please input quantity</div>
+                    <a name='GoBack' href="./index.html" class="receiveBut receiveColor i18n">Back</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/web3_1.2.6.min.js"></script>
+<!-- 计算js -->
+<script src="./js/bignumber.js"></script>
+<!-- 二维码js -->
+<script src="./js/qrcode.min.js"></script>
+<!-- 空头abi -->
+<script src="./js/kongtouabi.js"></script>
+<!-- 代币abi -->
+<script src="./js/daibiabi.js"></script>
+<!-- 引入国际化 -->
+<script src="./js/jquery.i18n.properties.min.js"></script>
+<!-- 加载国际化 -->
+<script src="./js/language.js"></script>
+<script>
+    document.getElementById('inputx').value = 0;
+    var web3 = initWeb3();
+    var kogntou;
+    var daibi;
+    // 兑换比例
+    var proportion;
+    // 兑换数量
+    var num = '';
+    // 还剩下多少可兑换
+    var shangxian;
+    // 已经兑换
+    var yidh;
+    web3.eth.getAccounts((error, accounts) => {
+        web3.eth.defaultAccount = accounts[0];
+        if (!web3.eth.defaultAccount) {
+            alert("Unable to connect to wallet address")
+        } else {
+            // console.log('address', web3.eth.defaultAccount)
+            // 空头
+            kongtou = new web3.eth.Contract( kongtou(), kongtouhy())
+            // 代币
+            daibi = new web3.eth.Contract( daibi(), daibihy())
+            // 查询代币余额
+            // daibi.methods.balanceOf(web3.eth.defaultAccount).call(function(error, result){
+            //     if (!error) {
+            //         document.getElementById('yue').innerHTML = web3.utils.fromWei(result, 'ether');
+            //     }else {
+            //         console.log(error);
+            //     }
+            // })
+            // 获取兑换比例
+            daibi.methods.rate().call(function(error, result){
+                // console.log(result, '获取兑换比例');
+                if (!error) {
+                    proportion = result;
+                }else {
+                    console.log(error);
+                }
+            })
+            // 查询以太币余额
+            web3.eth.getBalance(web3.eth.defaultAccount).then(res=> {
+                // console.log(res);
+                document.getElementById('yitaibi').innerHTML = web3.utils.fromWei(res, 'ether');
+            });
+            // 显示代币合约
+            document.getElementById('username').value = daibihy();
+            // 查询还剩下多少可兑换
+            daibi.methods.remainingTokens().call(function(error, result){
+                // console.log(result, '还可以兑换数量');
+                if (!error) {
+                    shangxian = result;
+                    document.getElementById('yue').innerHTML = web3.utils.fromWei(result, 'ether');
+                }else {
+                    console.log(error)
+                }
+            })
+            // 查询已经兑换
+            // daibi.methods.weiRaised().call(function(error, result){
+            //     console.log(result, '查询已经兑换');
+            //     if (!error) {
+            //         yidh = result
+            //     }else {
+            //         console.log(error)
+            //     }
+            // })
+        }
+    })
+
+    function initWeb3() {
+        var web3;
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            // 请求用户授权
+            window.ethereum.enable();
+        } else if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            console.log(web3.eth.defaultAccount);
+        } else {
+            // set the provider you want from Web3.providers
+            console.log('本地?');
+            web3 = new Web3(new Web3.providers.HttpProvider("https://hecochain.com"));
+        }
+        return web3;
+    }
+    // 代币合约地址二维码
+    function makeCode () {
+        new QRCode(document.getElementById("qrcode"), {
+            width : 100,
+            height : 100
+        }).makeCode(daibihy());
+    }
+    makeCode();
+    // 复制钱包地址
+    function copy() {
+        let val = document.getElementById('username');
+        // 选中文本
+        val.select();
+        // 执行浏览器复制命令
+        document.execCommand("copy");
+        alert('Copy succeeded');
+    }
+    // 监听输入框内容，根据比例兑换
+    function inputx(e) {
+        console.log(e);
+        // 如果兑换数量为空
+        if (e.value == '') {
+            document.getElementById('proportion').value = 0;
+            num = '';
+            document.getElementById('exchange').classList.add('receiveDis');
+            document.getElementById('exchange').setAttribute('disabled', 'disabled');
+            document.getElementById('exchange').value = 'Please input quantity';
+            return;
+        }
+        // 还可剩余兑换数量
+        // let sydh = web3.utils.fromWei(shangxian) - web3.utils.fromWei(yidh);
+        // console.log(sydh);
+        // 判断 总上限减去已经兑换
+        if ( shangxian < e.value ) {
+            document.getElementById('exchange').classList.add('receiveDis');
+            document.getElementById('exchange').setAttribute('disabled', 'disabled');
+            document.getElementById('exchange').value = `Remaining exchange quantity${sydh}`;
+            return;
+        }
+        // 可获得
+        document.getElementById('proportion').value = new BigNumber(proportion).times(e.value);;
+        num = e.value;
+        document.getElementById('exchange').classList.remove('receiveDis');
+        document.getElementById('exchange').removeAttribute('disabled');
+        document.getElementById('exchange').value = 'Redeem now';
+    }
+    // 立即兑换
+    $('#exchange').click(function () {
+        // console.log(web3.utils.toWei(num, 'ether'), num);
+        // console.log('兑换')
+        // web3.eth.sendTransaction({
+        //     from: web3.eth.defaultAccount,
+        //     to: daibihy(),
+        //     value: web3.utils.toWei(num, 'ether')
+        // }, (err, res) => {
+        //     if (res) {
+        //         alert('Successful exchange')
+        //     }
+        // });
+        // console.log('输入金额 =>',web3.utils.toWei(num, 'ether'))
+        web3.eth.estimateGas({
+            from: web3.eth.defaultAccount,
+            to:daibihy(),
+            // data: data,
+            value:web3.utils.toWei(num, 'ether'),
+        }).then( gas =>{
+            web3.eth.getGasPrice().then( GasPrice =>{
+            // console.log('gas =>',gas,'GasPrice =>',GasPrice)
+                web3.eth.sendTransaction({
+                    from:web3.eth.defaultAccount,
+                    to:daibihy(),
+                    value:web3.utils.toWei(num, 'ether'),
+                    gas:gas,
+                    gasPrice:GasPrice,
+                    // data:data,
+                }).then( res =>{
+                    console.log('成功')
+                }).catch( err =>{
+                    console.log('取消')
+                    document.getElementById('inputx').value = 0;
+                    document.getElementById('proportion').value = 0;
+                })
+            })
+        }).catch( err =>{
+            // console.log(7777)
+            document.getElementById('inputx').value = 0;
+            alert('not sufficient funds')
+        })
+
+    });
+</script>
+
+</html>

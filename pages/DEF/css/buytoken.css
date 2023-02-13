@@ -1,0 +1,299 @@
+@charset "utf-8";
+body {
+    background-color: #f4f2fa;
+    margin: 0;
+    padding: 0;
+}
+p, span {
+    margin: 0;
+}
+.center {
+    width: 800px;
+    margin: 0 auto;
+}
+.w-100 {
+    width: 100%;
+}
+.fl {
+    float: left;
+}
+.head {
+    font-family: 'SourceHanSerifCN-Medium';
+    display: block;
+    width: 100%;
+    padding: 4rem 0 1rem;
+    text-align: center;
+    font-size: 30px;
+    color: #333333;
+}
+.head img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+.buyList {
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+.buyItem {
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+}
+.buywid {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+.buyImg {
+    margin-right: 10px;
+    float: left;
+    padding: 20px 0;
+}
+.buyImg img {
+    max-width: 40px;
+    height: auto;
+}
+.buyText {
+    float: left;
+    width: calc(100% - 50px);
+    padding: 20px 0;
+}
+.buyItem:first-child .buyText {
+    border-bottom: 1px dashed #f4f2fa;
+}
+.buyText p {
+    color: #333333;
+    font-size: 16px;
+}
+.buyText span {
+    font-size: 12px;
+    color: #999;
+}
+.foot {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    width: 100%;
+    padding: 2rem 0;
+    font-size: 1rem;
+    color: #2c3e50;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* 领取空投 */
+.receiveHear {
+    position: relative;
+}
+.receiveBanner {
+    max-width: 100%;
+    height: auto;
+}
+.receiveBox {
+    position: relative;
+    margin-top: -130px;
+}
+.bannerTitle {
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    z-index: 9;
+    top: 35%;
+    left: 5%;
+}
+.receivewid {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 15px;
+    box-sizing: border-box;
+}
+.receiveInp {
+    display: block;
+    width: 100%;
+    background-color: #f4f2fa;
+    border-radius: 25px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    float: left;
+}
+.receiveImg {
+    width: 30px;
+    max-width: 30px;
+    height: auto;
+    float: left;
+}
+.receiveText {
+    display: block;
+    width: 100%;
+    margin: 25px 0;
+    font-size: 12px;
+    color: #333;
+    float: left;
+}
+.receiveInput {
+    width: calc(100% - 40px);
+    float: right;
+    height: 30px;
+    border: none;
+    outline: none;
+    background-color: #f4f2fa;
+    line-height: 30px;
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+    padding: 0;
+}
+.receiveBut {
+    width: 100%;
+    float: left;
+    background-color: #04c0f9;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 27px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 0;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.receiveDis {
+    opacity: .5;
+}
+input:focus {
+    border: none;
+    outline: none;
+}
+.receiveColor {
+    background-color: #b1b1b1;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+/* 销售 */
+.saleBanner {
+    max-width: 100%;
+    height: auto;
+}
+.saleList {
+    padding: 15px;
+    box-sizing: border-box;
+    background:linear-gradient(to right,#0eb9ec ,#65d9d4);
+}
+.saleItem {
+    display: inline-block;
+    width: 50%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    float: left;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.saleItem p {
+    color: #C9E7F5;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.saleWid {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    margin: 30px 0;
+}
+.saleText {
+    display: block;
+    font-size: 16px;
+    color: #061A47;
+    margin-bottom: 10px;
+}
+.saleInput {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #04c0f9;
+    margin-bottom: 20px;
+    float: left;
+}
+.saleCon {
+    display: block;
+    float: left;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.qrcode {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+.copyText {
+    display: inline-block;
+    max-width: 100%;
+    color: #333;
+    font-size: 12px;
+    line-height: 22px;
+}
+.copyInput {
+    width: 400px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    max-width: 100%;
+    font-size: 11px;
+}
+.copyText img,
+.copyText span {
+    float: left;
+}
+.copyText p {
+    float: left;
+    display: block;
+    width: 100%;
+    color: #04c0f9;
+}
+.copyText img {
+    width: 22px;
+    cursor: pointer;
+    margin-right: 7px;
+}
+@media screen and (max-width: 840px) {
+    .head {
+        font-size: 24px;
+    }
+    .head img {
+        width: 55%;
+        height: auto;
+    }
+    .center {
+        width: 100%;
+    }
+    .foot {
+        font-size: .8rem;
+        padding: 1rem 0;
+    }
+    .receiveBox {
+        margin-top: -65px;
+    }
+}

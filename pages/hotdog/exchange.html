@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./css/exchange.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div class="bg_color"></div>
+        <div class="content">
+            <div class="mg_tb10">
+                <div class="saletime fs_14 i18n" name='exchange01'></div>
+                <div class="countdowntext i18n" name='exchange02'></div>
+                <div class="countdown" id="countdown">00<span class="i18n" name='lock07'></span> 00<span class="i18n" name='lock08'></span> 00<span class="i18n" name='lock09'></span> 00<span class="i18n" name='lock10'></span></div>
+            </div>
+            <div class="content_box dsp_a fd_c">
+                <div class="dsp_a jc_ct img_box">
+                    <div class="imgbg_color"></div>
+                    <img class="logoimg" src="./images/ex_logo.png" width="58px" height="58px" alt="">
+                </div>
+                <div class="content_c">
+                    <div class="i18n" name='exchange03'></div>
+                    <div class="fs_18 price" id="BNBbalance">0.000</div>
+                    <div class="i18n" name='exchange04'></div>
+                    <div class="fs_18 price" id="HDbalance">0.000</div>
+                    <div class="texta_l i18n" name='exchange05'></div>
+                    <div class="mg_tb10"><input class="inp" oninput="inputx(this)" placeholder="" id="inputx"
+                            type="text"></div>
+                    <div class="texta_l i18n" name='exchange06'></div>
+                    <div class="mg_tb10"><input class="inp" id="proportion" type="text" value="0"> </div>
+                    <div class="mg_tb10 dsp_a fd_c">
+                        <div class="QRcode" id="qrcode"></div>
+                    </div>
+                    <div class="fs_14 mg_tb10 dsp_a">
+                        <span class="i18n" name='exchange07'></span><span id="addrs"></span><img onclick="copy()" width="16px" height="100%"
+                            src="./images/copy.png" alt="">
+                    </div>
+                    <div class="mg_tb10 dsp_a jc_sa">
+                        <div class="btn"><a href="./index.html" class="i18n" name='exchange08'></a></div>
+                        <div class="btn bg_c1 i18n" name='exchange09' id="exchange"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ConversionPopup" id="ConversionPopup"></div>
+        <input type="text" value="" style="position: absolute;top: 0;left: 0;opacity: 0;z-index: -10;"
+            id="copyinput"></input>
+    </div>
+    <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <script src="./js/jquery.i18n.properties.min.js"></script>
+    <script src="./js/language.js"></script>
+    <script src="./js/bignumber.js"></script>
+    <!-- <script src="./js/web3_1.2.6.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/web3/1.2.7/web3.min.js"></script>
+    <script src="./js/qrcode.min.js"></script>
+    <script src="./js/crowdsaleabi.js"></script>
+    <script>
+        var web3 = initWeb3();
+        var daibi;
+        // 兑换比例
+        var proportion;
+        // 兑换数量
+        var num = '';
+        // 还剩下多少可兑换
+        var shangxian;
+        // 已经兑换
+        var yidh;
+        var timer;
+        var isclick = false;
+
+        function initWeb3() {
+            var web3;
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                // 请求用户授权
+                // window.ethereum.enable();
+                window.ethereum.enable().then(function (accounts) {
+                    window.accountAddress = accounts[0];
+                    web3.eth.defaultAccount = accounts[0]
+                }).catch(err => {
+                    console.log(err)
+                });
+            } else if (typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);
+                web3.eth.defaultAccount = web3.eth.accounts[0];
+            } else {
+                // set the provider you want from Web3.providers
+                console.log('本地?');
+                web3 = new Web3(new Web3.providers.HttpProvider("https://hecochain.com"));
+            }
+            return web3;
+        }
+
+        function add0(nums) {
+            nums = Math.floor(nums)
+            return nums < 10 ? '0' + nums : nums
+        }
+        var timer
+        var timer1
+        var timer2
+
+        function CountDown(times,dated,dateh,datem,dates) {
+            let time = times - new Date().getTime()
+            let day = Math.floor((time / 1000 / 60 / 60) / 24);
+            let h = Math.floor((time / 1000 / 60 / 60) % 24);
+            let m = Math.floor((time / 1000 / 60) % 60);
+            let s = Math.floor((time / 1000) % 60);
+            // this.countdown = `${this.add0(day)} : ${this.add0(h)} : ${this.add0(m)} : ${this.add0(s)}`
+            return `${this.add0(day)}${dated} ${this.add0(h)}${dateh} ${this.add0(m)}${datem} ${this.add0(s)}${dates}`
+        }
+        let date = 1626948000000
+        let dated,datah,datam,datas;
+        if( getCookie("userLanguage") == 'zh-CN'){
+            dated = '天';
+            dateh = '时';
+            datem = '分';
+            dates = '秒';
+            $('#inputx').attr('placeholder','请输入兑换数量')
+        }else if (getCookie("userLanguage") == 'zh-TW') {
+            dated = '天';
+            dateh = '時';
+            datem = '分';
+            dates = '秒';
+            $('#inputx').attr('placeholder','請輸入兌換數量')
+        }else{
+            dated = 'D';
+            dateh = 'H';
+            datem = 'M';
+            dates = 'S';
+            $('#inputx').attr('placeholder','Please enter the exchange quantity')
+        }
+        function CountDownfun() {
+            $("#countdown").text(CountDown(date,dated,dateh,datem,dates))
+            timer && clearInterval(timer)
+            timer2 = setInterval(() => {
+                console.log('开启定时器')
+                if (date < new Date().getTime()) {
+                    clearInterval(timer2)
+                    $("#countdown").text(`00${dated} 00${dateh} 00${datem} 00${dates}`)
+                } else {
+                    $("#countdown").text(CountDown(date,dated,dateh,datem,dates))
+                }
+            }, 1000);
+        }
+        if (date > new Date().getTime()) {
+            CountDownfun();
+        }
+
+        //
+        function inputx(e) {
+            if (e.value == '') {
+                // console.log(123)
+                // document.getElementById('inputx').value = 0;
+                document.getElementById('proportion').value = 0;
+                num = '';
+                document.getElementById('exchange').classList.add('receiveDis');
+                document.getElementById('exchange').value = 'Please input quantity';
+                return;
+            }
+            // 可获得
+            document.getElementById('proportion').value = new BigNumber(proportion).times(e.value);
+            num = e.value;
+            document.getElementById('exchange').classList.remove('receiveDis');
+            document.getElementById('exchange').removeAttribute('disabled');
+            // console.log('$(#proportion.val())',$('#proportion').val())
+            if (getCookie("userLanguage") == 'zh-CN') {
+                if (Number(e.value) > 0 && !isNaN(Number(e.value)) && !isNaN($('#proportion').val())) {
+                    $("#exchange").text('确认提交')
+                } else {
+                    $("#exchange").text('请输入数量')
+                    document.getElementById('exchange').classList.add('receiveDis');
+                }
+            } else if (getCookie("userLanguage") == 'zh-TW') {
+                if (Number(e.value) > 0 && !isNaN(Number(e.value)) && !isNaN($('#proportion').val())) {
+                    $("#exchange").text('確認提交')
+                } else {
+                    $("#exchange").text('請輸入數量')
+                    document.getElementById('exchange').classList.add('receiveDis');
+                }
+            }else{
+                if (Number(e.value) > 0 && !isNaN(Number(e.value)) && !isNaN($('#proportion').val())) {
+                    $("#exchange").text('buy hotdog')
+                } else {
+                    $("#exchange").text('Please input quantity')
+                    document.getElementById('exchange').classList.add('receiveDis');
+                }
+            }
+        }
+        // 代币合约地址二维码
+        function makeCode() {
+            new QRCode(document.getElementById("qrcode"), {
+                width: 80,
+                height: 80
+            }).makeCode(crowdsale());
+        }
+        makeCode();
+        // 复制钱包地址
+        function copy() {
+            //获取点击的值
+            var clickContent = crowdsale();
+            //获取要赋值的input的元素
+            var inputElement = $("#copyinput");
+            //给input框赋值
+            $("#copyinput").val(clickContent)
+            //  inputElement.value = clickContent;
+            //选中input框的内容
+            inputElement.select();
+            // 执行浏览器复制命令
+            document.execCommand("Copy");
+            Popup('复制成功','複製成功','succeed')
+        }
+        //提示框
+        function Popup(cntext, twtext, entext) {
+            timer1 && clearTimeout(timer1)
+            //获取Cookie语言版本 提示相应文本
+            let text = getCookie("userLanguage") == 'zh-CN' ? cntext : getCookie("userLanguage") == 'zh-TW' ? twtext : entext;
+            $("#ConversionPopup").text(`${text}`)
+            $("#ConversionPopup").css({
+                'display': 'block'
+            })
+            timer1 = setTimeout(function () {
+                $("#ConversionPopup").css({
+                    'display': 'none'
+                })
+            }, 1500)
+
+        }
+        //
+        $('#exchange').click(function () {
+            let newdate = new Date().getTime()
+            console.log(`newdate`, newdate)
+            if (newdate > date) {
+            //     $('#exchange').addClass('receiveDis');
+            //     Popup('未到兑换时间','未到兌換時間','Pre-sale time is not available')
+            // } else if (newdate > date) {
+                Popup('兑换时间已结束','兌換時間已結束','already over')
+                $('#exchange').addClass('receiveDis');
+            } else {
+                console.log('开启兑换')
+                web3.eth.estimateGas({
+                    from: web3.eth.defaultAccount,
+                    to: crowdsale(),
+                    value: web3.utils.toWei(num, 'ether'),
+                }).then(gas => {
+                    web3.eth.getGasPrice().then(GasPrice => {
+                        web3.eth.sendTransaction({
+                            from: web3.eth.defaultAccount,
+                            to: crowdsale(),
+                            value: web3.utils.toWei(num, 'ether'),
+                            gas: gas,
+                            gasPrice: GasPrice,
+                        }, function (error, res) {
+                            if (!error) {
+                                Popup('兑换成功','兌換成功','succeed')
+                                console.log('成功')
+                            } else {
+                                Popup('成功执行操作','成功執行操作','operate successfully')
+                                console.log('取消')
+                            }
+                            document.getElementById('inputx').value = '';
+                            document.getElementById('proportion').value = 0;
+                            num = ''
+                        })
+                    })
+                }).catch(err => {
+                    document.getElementById('inputx').value = '';
+                    document.getElementById('proportion').value = 0;
+                    num = ''
+                    // Popup('not sufficient funds')
+                })
+            }
+
+
+        })
+
+        web3.eth.getAccounts((error, accounts) => {
+            web3.eth.defaultAccount = accounts[0];
+            if (!web3.eth.defaultAccount) {
+                Popup('Unable to connect to wallet address')
+            } else {
+                // 代币
+                daibi = new web3.eth.Contract(daibi(), crowdsale())
+                // 获取兑换比例
+                daibi.methods.rate().call(function (error, result) {
+                    // console.log(result, '获取兑换比例');
+                    if (!error) {
+                        proportion = result;
+                    } else {
+                        console.log(error);
+                    }
+                })
+                // 查询BNB余额
+                web3.eth.getBalance(web3.eth.defaultAccount).then(res => {
+                    console.log('BNBbalance =>', res);
+                    $('#BNBbalance').text(web3.utils.fromWei(res, 'ether'));
+                });
+                // 显示代币合约
+                $('#addrs').text(`${crowdsale().slice(0,5)}***${crowdsale().slice(crowdsale().length-4)}`);
+
+                // 查询还剩下多少可兑换
+                daibi.methods.remainingTokens().call(function (error, result) {
+                    // console.log(result, '还可以兑换数量');
+                    if (!error) {
+                        shangxian = result;
+                        // console.log('result =>', result)
+                        // console.log('document.getElementById(yue)', document.getElementById('yue'))
+                        $('#HDbalance').text(web3.utils.fromWei(result, 'mwei'));
+                    } else {
+                        console.log(error)
+                    }
+                })
+            }
+        })
+    </script>
+
+</body>
+
+</html>

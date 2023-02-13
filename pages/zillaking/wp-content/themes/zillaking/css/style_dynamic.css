@@ -1,0 +1,467 @@
+
+				
+		
+		
+								
+					body{
+											font-family: 'Lato', sans-serif;
+															}
+							body,
+				.wrapper,
+				.content,
+				.full_width,
+				.overlapping_content .content > .container,
+				.more_facts_holder,
+				.comment_holder .comment #respond textarea,
+				.comment_holder .comment #respond input[type='text'],
+				.comment_holder .comment #respond input[type='email'],
+				.content .container
+				{
+				background-color:#ffffff;
+				}
+				.angled-section polygon{
+				fill: #ffffff;
+				}
+				
+											
+		
+					.projects_holder article .portfolio_description,
+			.blog_holder.masonry article .post_text .post_text_inner,
+			.blog_holder.masonry_full_width article .post_text .post_text_inner,
+			.q_team,
+			.price_table_inner,
+			.latest_post_holder.boxes > ul > li,
+			.q_counter_holder.boxed_counter {
+			background-color: #ffffff;
+			}
+		
+		
+																
+		
+
+
+		
+		
+			.header_top,
+			.fixed_top_header .top_header,
+			.fixed_top_header nav.mobile_menu{
+			background-color: rgba(3,91,167,1);
+			}
+									header.sticky .header_top{
+			background-color: rgba(3,91,167,0.7);
+			}
+		
+		
+		
+		
+
+														.content{
+					margin-top: -153px;
+					}
+				
+					
+					.logo_wrapper,
+			.side_menu_button,
+			.shopping_cart_inner
+			{
+			height: 120px;
+			}
+			.content.content_top_margin{
+			margin-top: 153px !important;
+			}
+
+			header:not(.centered_logo) .header_fixed_right_area {
+			line-height: 120px;
+			}
+
+								
+		
+		
+		
+						header.fixed_hiding .q_logo a,
+				header.fixed_hiding .q_logo{
+				max-height: 61px;
+				}
+				
+		
+		
+		
+							nav.main_menu > ul > li > a{
+			line-height: 120px;
+			}
+		
+		
+		
+					nav.main_menu > ul > li > a{
+			 color: #222222; 							font-family: 'Lato', sans-serif;
+						 font-size: 15px; 						 font-style: normal; 			 font-weight: 600; 			 letter-spacing: 0px; 			 text-transform: none; 			}
+
+		
+		
+					nav.main_menu ul li:hover a {
+			 color: #ef2a24; 			}
+		
+					nav.main_menu ul li.active a {
+			color: #ef2a24			}
+			
+		
+
+		
+
+																		
+
+						
+		
+		
+		
+					nav.mobile_menu ul li a,
+			nav.mobile_menu ul li h3{
+			 color: #222222; 							font-family: 'Lato', sans-serif;
+						 font-size: 15px; 						 font-style: normal; 			 font-weight: 600; 										text-transform: none;
+						}
+
+		
+					nav.mobile_menu ul li span.mobile_arrow i, nav.mobile_menu ul li span.mobile_arrow i {
+			color: #222222;
+			}
+		
+					nav.mobile_menu ul li a:hover,
+			nav.mobile_menu ul li.active > a,
+			nav.mobile_menu ul li.current-menu-item > a{
+			color: #ef2a24;
+			}
+				
+						
+		
+		
+		
+				
+		
+																
+
+						
+
+		
+				
+				
+		
+		
+
+		
+		
+		
+										
+		
+		
+		
+						.google_map{
+				height: 750px;
+				}
+				
+		
+		
+		
+								
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+
+		
+		
+
+												
+										
+								
+								
+										
+										
+								
+								
+		
+														
+								
+								
+								
+				
+						
+						
+		/*Blog Masonry Gallery - end */
+
+								
+						
+						
+								
+												
+								
+
+		
+						
+				
+		
+
+		
+				
+
+										
+		
+
+												
+				
+				
+		
+								
+								
+								
+		
+																																																				
+				
+		
+		.vertical_menu_float .menu-item .second{
+		left: calc(100% + 30px); /*because of the padding*/
+		}
+
+		.vertical_menu_hidden aside.vertical_menu_area .vertical_menu_float .menu-item .second {
+		left: calc(100% + 40px);
+		}
+
+
+		
+		
+		
+		
+
+
+							.vertical_menu_area{
+			text-align:left;
+			}
+			
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					.header_top .q_social_icon_holder .simple_social:not(.qode_icon_font_elegant):not(.qode_icon_font_awesome),
+			.header_top .header-widget,
+			.header_top .header-widget.widget_nav_menu ul.menu>li>a,
+			.header_top .header-widget p,
+			.header_top .header-widget a,
+			.header_top .header-widget span:not(.qode_icon_font_elegant):not(.qode_icon_font_awesome) {
+			color: #ffffff;font-size: 16px;font-weight: 600;			}
+
+			
+		
+																													.portfolio_main_holder .item_holder.thin_plus_only .thin_plus_only_icon {
+			font-family: 			}
+						
+							.cf7_custom_style_1  input.wpcf7-form-control.wpcf7-submit,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-submit:not([disabled]) {
+				background-color: #ef2a24;border-color: #ef2a24;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-right-radius: 50px;border-bottom-left-radius: 50px;color: #ffffff;font-family: Lato;font-size: 18px;font-style: normal;font-weight: 700;letter-spacing: 0px;text-transform: none;height: 50px;line-height: 50px;padding: 0 50px;				}
+			
+							.cf7_custom_style_1  input.wpcf7-form-control.wpcf7-submit:hover,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-submit:not([disabled]):hover {
+				color: #ffffff;background-color: #ef2a24;border-color: #ef2a24;				}
+			
+							.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-text,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-number,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-date,
+				.cf7_custom_style_1 textarea.wpcf7-form-control.wpcf7-textarea,
+				.cf7_custom_style_1 select.wpcf7-form-control.wpcf7-select,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-quiz{
+				background-color: #f7f7f7;border-color: #cccccc;border-width: 1px;border-style:solid;border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;color: #222222;font-family: Lato;font-size: 15px;line-height: 25px;font-style: normal;font-weight: 400;letter-spacing: 0px;text-transform: none;padding-top: 15px;padding-right: 15px;padding-bottom: 15px;padding-left: 15px;margin-bottom: 10px;				}
+			
+							.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-text:focus,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-number:focus,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-date:focus,
+				.cf7_custom_style_1 textarea.wpcf7-form-control.wpcf7-textarea:focus,
+				.cf7_custom_style_1 select.wpcf7-form-control.wpcf7-select:focus,
+				.cf7_custom_style_1 input.wpcf7-form-control.wpcf7-quiz:focus{
+				background-color: #f7f7f7;border-color: #cccccc;				}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							.cf7_custom_style_1 ::-webkit-input-placeholder{
+				color: #222222;opacity:1;				}
+										.cf7_custom_style_1 :-moz-placeholder{
+				color: #222222;opacity:1;				}
+										.cf7_custom_style_1 ::-moz-placeholder{
+				color: #222222;opacity:1;				}
+										.cf7_custom_style_1 :-ms-input-placeholde{
+				color: #222222;opacity:1;				}
+																																																																					.cf7_custom_style_1 textarea.wpcf7-form-control.wpcf7-textarea{
+			height: 150px;
+			}
+				
+		
+		
+				
+		
+		
+		
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+				
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		
+		
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					#back_to_top span i,
+			#back_to_top span span{
+			color: #ffffff;
+			}
+					#back_to_top:hover span i,
+			#back_to_top:hover span span{
+			color: #ffffff;
+			}
+		
+					#back_to_top > span{
+			background-color: rgba(239,42,36,1);border-color: rgba(239,42,36,1);border-width: 1px;border-style: solid			}
+					#back_to_top:hover > span{
+			background-color: rgba(239,42,36,1);border-color: rgba(239,42,36,1)			}
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+								
+		
+		
+				
+				
+				
+				
+										
+
+		
+		
+																
+
+						
+		
+
+		
+				    .masonry_gallery_item.square_big .masonry_gallery_item_inner .masonry_gallery_item_content{
+			text-align: center;		    }
+		
+		
+				    .masonry_gallery_item.square_small .masonry_gallery_item_inner .masonry_gallery_item_content{
+			text-align: center;		    }
+		
+		
+				    .masonry_gallery_item.rectangle_portrait .masonry_gallery_item_inner .masonry_gallery_item_content{
+			text-align: center;		    }
+		
+		
+				    .masonry_gallery_item.rectangle_landscape .masonry_gallery_item_inner .masonry_gallery_item_content{
+			text-align: center;		    }
+		
+
+	
+						
+		
+		
+
+				
+.qode-accordion-holder .qode-title-holder { text-transform: none;font-style: normal;}
+
+.qode-btn { text-transform: none;font-style: normal;}
+
+
+

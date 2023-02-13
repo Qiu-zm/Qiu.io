@@ -1,0 +1,151 @@
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.bg_color {
+  width: 100%;
+  height: 200px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fce825;
+  z-index: -1;
+}
+.dsp_a {
+  display: flex;
+  align-items: center;
+}
+.fd_c {
+  flex-direction: column;
+}
+.jc_sa {
+  justify-content: space-around;
+}
+.jc_sb {
+  justify-content: space-between;
+}
+.jc_ct {
+  justify-content: center;
+}
+.content {
+  margin: auto;
+  max-width: 400px;
+  padding-top: 20px;
+}
+.content .countdown {
+  font-size: 26px;
+}
+.content .countdowntext {
+  font-size: 26px;
+  color: #fff;
+  text-shadow: #000 1px 1px 2px;
+  font-weight: bold;
+}
+.content .saletime {
+  color: #999;
+}
+.content .receiveDis {
+  opacity: 0.5 !important;
+}
+.texta_l {
+  text-align: left;
+}
+.ConversionPopup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10000;
+  padding: 20px 25px;
+  border-radius: 15px;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0px 5px 22px 3px #ccc;
+  border: 1px solid #ccc;
+  display: none;
+  min-width: 180px;
+  text-align: center;
+}
+.content_box {
+  background-color: #FFF;
+  box-shadow: 2px 3px 6px 4px #ccc;
+  color: #666;
+  border-radius: 10px;
+}
+.content_box > div {
+  width: 100%;
+}
+.content_box .QRcode {
+  width: 80px;
+  height: 80px;
+  background-color: #ccc;
+}
+.content_c {
+  padding: 10px;
+  box-sizing: border-box;
+}
+.inp {
+  border-radius: 25px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+}
+.btn {
+  border-radius: 50px;
+  padding: 10px 30px;
+  background-color: #bcbcbc;
+  color: #fff;
+  min-width: 65px;
+  width: 30%;
+  text-align: center;
+  max-width: 40%;
+}
+.img_box {
+  position: relative;
+}
+.imgbg_color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff9be;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+.logoimg {
+  position: absolute;
+  left: 100%;
+  top: -70px;
+  left: -moz-calc(30%);
+  left: -webkit-calc(30%);
+  left: calc(100% - 70px);
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+}
+.price {
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0 8px;
+}
+.bg_c1 {
+  background-color: #eb5535;
+}
+.mg_tb10 {
+  margin: 10px 0;
+}
+.fs_14 {
+  font-size: 14px;
+}
+.fs_18 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.title {
+  color: #666;
+}

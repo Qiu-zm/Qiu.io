@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./css/lock.css">
+    <title>HotDog</title>
+</head>
+<body>
+    <div>
+        <div class="bg_box">
+            <img class="lock_bg_banner" width="100%" src="./images/lock_bg_banner.png" alt="">
+            <img class="lock_bg_a" src="./images/lock_bg_a.png" alt="">
+        </div>
+        <div class="content">
+            <img class="bg_img" width="100%" src="./images/lock/content-piture-bg-defalt.png" alt="">
+            <div class="content_box">
+                <img class="bg_logo_img" src="./images//lock/_logo.png" alt="">
+                <div class="img_box dsp_ca juc_c pad_tb">
+                    <img width="34px" height="34px"  src="./images/lock/_logo.png" alt="">
+                    <img width="34px" height="34px" src="./images/lock/content-icon-bnb-defalt.png" alt="">
+                    HotDog/WBNB
+                </div>
+                <div class="" style="font-size: 12px;"><div class="i18n" style="text-align:center;margin-bottom: 5px;" name='lock01'></div><div style="display: flex;
+                justify-content: center;" id='addr'></div> </div>
+                <div class="link_box dsp_ca juc_c">
+                    <div class="dsp_ca link_a" onclick="openhref('https://www.hotdogcoin.org')"><span class="i18n" name='lock02'></span><img width="16px" height="16px" src="./images/lock/content-icon-lick-click.png" alt=""> </div>
+                    <div class="dsp_ca link_a" onclick="openhref('https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x82248D8AAaAA115AFfF29A7046Dbb8bFCe25141e')"><span class="i18n" name='lock03'></span><img width="16px" height="16px" src="./images/lock/content-icon-lick-click.png" alt=""> </div>
+                    <div class="dsp_ca link_a" onclick="openhref('https://bscscan.com/address/0x82248D8AAaAA115AFfF29A7046Dbb8bFCe25141e#code')"><span class="i18n" name='lock04'></span><img width="16px" height="16px" src="./images/lock/content-icon-lick-click.png" alt=""> </div>
+                </div>
+                <div class="panca dsp_ca mg_tb10" onclick="openhref('https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x82248D8AAaAA115AFfF29A7046Dbb8bFCe25141e')">
+                    <img width="40px" height="40px" src="./images/lock/content-icon-pancake-defalt.png" alt="">
+                    PancakeSwap V2
+                </div>
+                <div class="dsp_ca mg_tb10 attestation" style="flex-direction: row-reverse"> <img style="margin-left: 5px;" width="16px" height="16px" src="./images/lock/content-icon-lock1-defalt.png" alt=""><span class="i18n" name='lock15' style="margin-left: 5px;"></span>https://bscscan.com</div>
+                <div class="lock_box dsp_ca fld_c">
+                    <div><img width="50px" height="50px" src="./images/lock/content-icon-lock1-disabled.png" alt=""></div>
+                    <div class="lock_v i18n" name='lock05'></div>
+                    <div class="lock_time_text i18n" name='lock06'></div>
+                    <div class="lock_time" id="lock_time">00<span class="i18n" name='lock07'></span> 00<span class="i18n" name='lock08'></span> 00<span class="i18n" name='lock09'></span> 00<span class="i18n" name='lock10'></span></div>
+                    <div class="lock_v"><span class="i18n" name='lock11'></span>18/07/2021 14:00</div>
+                </div>
+                <!-- <div class="dsp_ca juc_sb mg_tb10">
+                    <div class="i18n" name='lock12'>LP令牌总数</div>
+                    <div>60,591,2958</div>
+                </div>
+                <div class="dsp_ca juc_sb mg_tb10">
+                    <div class="i18n" name='lock13'>总锁定LP</div>
+                    <div>60,591,2958</div>
+                </div> -->
+                <div class="dsp_ca juc_sb mg_tb10">
+                    <div class="i18n" name='lock14'></div>
+                    <div>22/10/2021 20:00</div>
+                </div>
+            </div>
+            <div class="unfold">
+                <div class="back_box">
+                    <a href="./index.html"><img width="25px" height="25px" src="./images/lock/back.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+<script src="./js/jquery.i18n.properties.min.js"></script>
+<script src="./js/language.js"></script>
+    <script>
+        function openhtml(url){
+            window.location.href=url;
+        }
+        function openhref(url){
+            window.open(url)
+        }
+        
+
+        function add0(num) {
+            num = Math.floor(num)
+            return num < 10 ? '0' + num : num
+        }
+        $("#addr").text(('0x82248D8AAaAA115AFfF29A7046Dbb8bFCe25141e'))
+        
+        var timer2
+        let date = 1634904000000
+        function CountDown(times,data_d ='天',data_h ='时',data_m ='分',data_s ='秒') {
+            let time = times - new Date().getTime()
+            let day = Math.floor((time / 1000 / 60 / 60) / 24);
+            let h = Math.floor((time / 1000 / 60 / 60) % 24);
+            let m = Math.floor((time / 1000 / 60) % 60);
+            let s = Math.floor((time / 1000) % 60);
+            // this.countdown = `${this.add0(day)} : ${this.add0(h)} : ${this.add0(m)} : ${this.add0(s)}`
+            return `${this.add0(day)+data_d} ${this.add0(h)+data_h} ${this.add0(m)+data_m} ${this.add0(s)+data_s}`
+        }
+        let dated,datah,datam,datas;
+        if( getCookie("userLanguage") == 'zh-TW'){
+            dated = '天';
+            dateh = '時';
+            datem = '分';
+            dates = '秒';
+        }else if( getCookie("userLanguage") == 'zh-CN'){
+            dated = '天';
+            dateh = '时';
+            datem = '分';
+            dates = '秒';
+        }else{
+            dated = 'D';
+            dateh = 'H';
+            datem = 'M';
+            dates = 'S';
+        }
+        function CountDownfun() {
+            console.log(777)
+            $("#lock_time").text(CountDown(date,dated,dateh,datem,dates))
+            timer2 && clearInterval(timer2)
+            timer2 = setInterval(() => {
+                console.log('开启定时器')
+                if (date < new Date().getTime()) {
+                    clearInterval(timer2)
+                    $("#lock_time").text(`00${dated} 00${dateh} 00${datem} 00${dates}`)
+                } else {
+                    $("#lock_time").text(CountDown(date,dated,dateh,datem,dates))
+                }
+            }, 1000);
+        }
+        if (date > new Date().getTime()) {
+            CountDownfun();
+        }
+        function concealtext(text,l = 5,r = 4){
+            console.log('object :>> ', `${text.slice(0,5)}***${text.slice(text.length-4)}`);
+            return `${text.slice(0,5)}***${text.slice(text.length-4)}`
+        }
+    </script>
+</html>

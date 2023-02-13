@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <title>Decentralized Finance</title>
+    <link rel="shortcut icon" href="./images/shortcut.png">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./css/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="./css/owl.theme.css" />
+    <link rel="stylesheet" type="text/css" href="./css/owl.transitions.css" />
+    <link rel="stylesheet" type="text/css" href="./css/pe-icon-7.css">
+    <link rel="stylesheet" type="text/css" href="./css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style>
+        body * {
+            font-family: 'Nunito', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ffffff;
+        }
+        #countdown-wrap {
+            width: 100%;
+            height: 10px;
+            padding: 20px;
+            font-family: arial;
+            max-width: 650px;
+            margin: 150px auto 300px;
+        }
+        #goal {
+            font-size: 48px;
+            text-align: right;
+            color: rgb(5, 5, 5);
+
+            @media only screen and (max-width : 640px) {
+                text-align: center;
+            }
+
+        }
+        #glass {
+            width: 100%;
+            height: 20px;
+            background: #c7c7c7;
+            border-radius: 10px;
+            float: left;
+            overflow: hidden;
+        }
+        #progress {
+            float: left;
+            width: 50%;
+            height: 20px;
+            background: #FF5D50;
+            z-index: 333
+        }
+        .goal-stat {
+            width: 25%;
+            height: 30px;
+            padding: 10px;
+            float: left;
+            margin: 0;
+            color: rgb(7, 7, 7);
+
+            @media only screen and (max-width : 640px) {
+                width: 50%;
+                text-align: center;
+            }
+        }
+        .goal-number,
+        .goal-label {
+            display: block;
+        }
+
+        .goal-number {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner i18n" name='Loading'>Loading...</div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+        <div class="container">
+            <a class="logo" href="index.html">
+                <img src="./images/logo4.png" width="40px"></img>
+                <div class="logo_name">DEF-Finance</div> 
+            </a>
+            <div><a class="nav_buy i18n" name='homecenter3' style="color:#fff" href="./sale.html"></a> </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="mdi mdi-menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
+                    <li class="nav-item font-weight-600 active">
+                        <a href="#home" class="nav-link i18n" name='Home'>Home</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="#about" class="nav-link i18n" name='About'>About</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a href="#services" class="nav-link i18n" name='Services'>Services</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" onclick="linksale()" class="nav-link i18n" name='TokenSale'>Token Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#roadmap" class="nav-link i18n" name='Roadmap'>Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" onclick="linkPdf()" class="nav-link i18n" name='Whitepaper'>Whitepaper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" onclick="linkSource()" class="nav-link i18n" name='OpenSource'>Open Source</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" onclick="linkGithub()" class="nav-link i18n" name='Github'>Github</a>
+                    </li>
+                    <li class="nav-item">
+                        <a onclick="linkAward()" class="nav-link i18n" name='AirdropAward'>Airdrop Award</a>
+                    </li>
+                    <li class="nav-item">
+                        <a onclick="linkTelegram()" class="nav-link i18n" name='Telegram'>Telegram</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link i18n" name='footter8' onclick="linkTwitter()">Twitter</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link">
+                            中文简体 -->
+                            <!-- <select id="language" class="translate" style="border:none;background-color: transparent;padding:0 0 3px;margin: 0px;">
+                                <option class="translates" value="zh-CN">中文简体</option>
+                                <option class="translates" value="en">English</option>
+                            </select> -->
+                        <!-- </a>
+                    </li> -->
+                    <li style="display: flex;align-items: center;">
+                        <a style="padding: 6px 0" id="languages">中文简体</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="home-height-half" id="home">
+        <div class="bg-overlay-gredient"></div>
+        <div class="home-center">
+            <div class="home-desc-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="home-title text-white">
+                                <!-- <h1 class="home-title text-white">Defi Products to a
+                                    <span class="element" data-elements="Sustainable Ecosystem, Smart Economy"></span>
+                                </h1> -->
+                                <p class="mt-4 i18n" name='homecenter1'>Decentralized Finance (DEF) will use result oriented modules such as milestones, tasks accomplished, and other metrics to ensure transparency and keep us in sync with the community as they are the main drivers of the project.</p>
+                                <p class="i18n" name='homecenter2'>Decentralized Finance (DEF) is a project designed to build multiple defi applications from deep-seated ideas and stream of ideas, so as to transform them into a complete platform to improve the adoption rate of defi. At the same time, decentralized Finance (DEF) is committed to NFT and blockchain of the world's top art!</p>
+                                <div class="watch-video mt-5">
+                                    <a href="./sale.html"
+                                        class="btn btn-custom mr-4 btn-round i18n" name='homecenter3'>Buy Tokens</a>
+                                    <a href="./receive.html"
+                                        class="btn btn-custom mr-4 btn-round i18n" name='homecenter4'>Airdrop Award</a>
+                                    <a style="margin-right: 0!important;" href="https://t.me/DEF_Finance"
+                                        class="btn btn-custom mr-4 btn-round i18n" name='homecenter5'>电报群</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="software-home-img">
+                                <img src="./images/Group 3.png" alt="img-responsive"
+                                    class="img-fluid mx-auto d-block">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class=" title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='section1'>Fully Integrated Products</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row vertical-content mt-4">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="./images/blockchain.png" alt="" class="img-fluid mx-auto d-block">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="about-content">
+                        <div class="upper-heading i18n" name='section2'>What is Decentralized Finance?</div>
+                        <p class="text-muted i18n" name='section3'>Decentralized Finance (DEF) is committed to the NFT and blockchain vision of the world's top art works as a bridge between the world's top artists and blockchain, and supports the growth of the primary NFT artists in the crypto world. Let all people have art. Art is the wealth of human beings, but it is often in the hands of a few people. To ensure equal access to art, we need a better trading system and technological innovation. Decentralized Finance (DEF) can also be defined as decentralized venture capital. By constructing def products invested by community, income is distributed as profit stakeholders, thus enhancing the ability of decentralized interest free financial ecosystem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-light" id="services">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='section4'>Decentralized Finance Products</h3>
+                        <p class="text-muted i18n" name='section5'>Decentralized Finance is powering open finance through our ecosystem of
+                            cross-chain protocols, exchanges, and applications that are the legos to build the
+                            next-generation of DeFi.It will help transform works of art and artists and inject new value into classic works of art.
+                            It will promote fairer and more transparent pricing of works of art by changing the evaluation method of classic works of art.
+                            We will invest a lot of resources to cultivate NFT artists and provide them with a complete development path.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row vertical-content mt-4">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card widget-flat">
+                                <div class="card-body text-center">
+                                    <div class="icon-section">
+                                        <i class="pe-7s-wallet"></i>
+                                    </div>
+                                    <a href="javascript:;">
+                                        <h3 class="mb-3 i18n" name='card1'>Decentralized Wallet</h3>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card widget-flat">
+                                <div class="card-body text-center">
+                                    <div class="icon-section">
+                                        <i class="pe-7s-loop"></i>
+                                    </div>
+                                    <a href="javascript:;">
+                                        <h3 class="mb-3 i18n" name='card2'>Decentralized Finance Swap</h3>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card widget-flat">
+                                <div class="card-body text-center">
+                                    <div class="icon-section">
+                                        <i class="pe-7s-paper-plane"></i>
+                                    </div>
+                                    <a href="javascript:;">
+                                        <h3 class="mb-3 i18n" name='card3'>Decentralized Finance Dex</h3>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card widget-flat">
+                                <div class="card-body text-center">
+                                    <div class="icon-section">
+                                        <i class="pe-7s-cash"></i>
+                                    </div>
+                                    <a href="#">
+                                        <h3 class="mb-3 i18n" name='card4'>Protocol Defi Loans</h3>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./images/services.png" alt="" class="mx-auto d-block img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section token-sale" id="token">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='sale1'>Token Sale</h3>
+                        <p class="text-muted i18n" name='sale2'>Decentralized FinanceTeam - 100,000,000 DEF 
+                            (Team DEF will be locked for 36 months)
+                            5% handling charge will be deducted for each def transaction, of which 3% will go to uniswap to add liquidity and 2% will be allocated to def holders</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row vertical-content mt-4">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale3'>Token Rate</h6>
+                                <p class="mb-0 text-muted">1ETH = 1000000DEF</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale4'>Total Token Supply</h6>
+                                <p class="mb-0 text-muted">1,000,000,000 DEF</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale5'>Airdrop Award</h6>
+                                <p class="mb-0 text-muted">100,000,000 DEF</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale6'>Uniswap</h6>
+                                <p class="mb-0 text-muted">100,000,000 DEF</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale7'>marketing</h6>
+                                <p class="mb-0 text-muted">100,000,000 DEF</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <h6 class="i18n" name='sale8'>Token Contract</h6>
+                                <p class="mb-0 text-muted"> <a class="i18n" name='sale9'
+                                        href="javascript:;" onclick="linkSource()">View
+                                        Here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 mt-2">
+                    <h4 class="text-white i18n" name='sale10'>Token sale</h4>
+                    <img src="images/PFI CHART LIGHT BG-01.png" width="300px">
+                </div>
+            </div>
+            <a href="./sale.html" class="btn btn-custom mr-4 btn-round i18n" name='sale11'>Buy Tokens</a>
+            <a href="./receive.html" class="btn btn-custom mr-4 btn-round i18n" name='sale12'>Airdrop Award</a>
+        </div>
+    </section>
+    <section class="section bg-light" id="roadmap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='roadmap1'>Roadmap</h3>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row vertical-content mt-4">
+                <div class="col-md-12">
+                    <div class="customNavigation">
+                        <a class="prev-roadmap"><i class="mdi mdi-arrow-left"></i></a>
+                        <a class="next-roadmap"><i class="mdi mdi-arrow-right"></i></a>
+                    </div>
+                    <div id="owl-demo" class=" owl-carousel owl-theme owl-roadmap text-center">
+                        <div class="item">
+                            <div class="item-box">
+                                <p class="text-muted i18n" name='roadmap2'>June 2021</p>
+                                <p class="font-weight-600 i18n" name='roadmap3'>Planning and development of decentralized financial marketing activities<br>
+                                    Pre sale starts</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-box">
+                                <p class="text-muted i18n" name='roadmap4'>Mid June 2021</p>
+                                <p class="font-weight-600 i18n" name='roadmap5'>Uniswap creates liquidity</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-box">
+                                <p class="text-muted i18n" name='roadmap6'>July 2021</p>
+                                <p class="font-weight-600 i18n" name='roadmap7'>Network expansion partnership</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-box">
+                                <p class="text-muted i18n" name='roadmap8'>August 2021</p>
+                                <p class="font-weight-600 i18n" name='roadmap9'>Second marketing campaign<br>
+                                    The development of decentralized Finance (DEF).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-box">
+                                <p class="text-muted i18n" name='roadmap10'>September 2021</p>
+                                <p class="font-weight-600 i18n" name='roadmap11'>Update of the roadmap for developing the defi Wallet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section token-sale" id="token">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='tokenlist1'>Official Listing</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row vertical-content mt-4">
+                <div class="col-md-8">
+                    <div class="row" style="justify-content: center;">
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="info-box">
+                                <img src="./images/uniswap.png" width="200px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="section token-sale" id="partnership">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <h3 class="font-weight-600 mb-3 i18n" name='tokenlist2'><a
+                                href="javascript:;" onclick="linkSource()" >Open Source</h3></a>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section token-sale" id="whitepaper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="title text-center mb-5">
+                        <a href="javascript:;">
+                            <h3 class="font-weight-600 mb-3 i18n" name='tokenlist3' onclick="linkPdf()" > View Whitepaper</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mt-3">
+                    <h5 class="text-uppercase i18n" name='footter1'>Decentralized Finance</h5>
+                    <div class="text-muted">
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="index.html" class="i18n" name='footter2'>Home</a></li>
+                            <li><a href="javascript:;" class="i18n" name='footter3' onclick="linkPdf()">Whitepaper</a></li>
+                            <li><a href="javascript:;" class="i18n" name='footter4' onclick="linkSource()">Open Source</a></li>
+                            <li><a href="javascript:;" class="i18n" name='footter5' onclick="linkGithub()">Github</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h5 class="i18n" name='footter6'>Support</h5>
+                    <div class="text-muted">
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="javascript:;" class="i18n" name='footter7' onclick="linkTelegram()">Telegram</a></li>
+                            <li><a href="javascript:;" class="i18n" name='footter8' onclick="linkTwitter()">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <h5  class="i18n" name='footter9'>Subscribe</h5>
+                    <div class="text-muted">
+                        <p class="i18n" name='footter10'>We would like to hear from you</p>
+                    </div>
+                    <form class="form subscribe">
+                        <input readonly ="readonly" placeholder="def-finance@outlook.com" class="form-control" required>
+                        <a href="#" class="submit"><i class="pe-7s-paper-plane"></i></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-alt">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left pull-none ">
+                        <p class="copy-rights text-muted mb-0 i18n" name="footter11">2021 © Decentralized Finance</p>
+                    </div>
+                    <div class="float-right pull-none">
+                        <ul class="social-icon list-unstyled list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a href="javascript:;"><i
+                                        class="mdi mdi-telegram icon icon--xs"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:;"><i
+                                        class="mdi mdi-twitter icon icon--xs"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:;"><img src="./images/gitHub.png" alt="GitHub"></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:;"><img src="./images/youxiang.png" alt="Email"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="./js/jquery.min.js"></script> -->
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery.countdown.min.js"></script>
+    <script src="./js/jquery.easing.min.js"></script>
+    <script src="./js/scrollspy.min.js"></script>
+    <script src="./js/typed.js"></script>
+    <script src="./js/owl.carousel.min.js"></script>
+    <script src="./js/contact.init.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="./js/contact.init.js"></script>
+    <script src="./js/jquery.app.js"></script>
+    <!-- 引入国际化 -->
+    <script src="./js/jquery.i18n.properties.min.js"></script>
+    <!-- 加载国际化 -->
+    <script src="./js/language.js"></script>
+    <script>
+        // 顶部导航栏 跳转链接到领取空投页面
+        function linkAward() {
+            window.location.href="./receive.html";
+        }
+         // 顶部导航栏 跳转链接到购买DEF页面
+         function linksale() {
+            window.location.href="./sale.html";
+        }
+        // 顶部导航栏 跳转链接到PDF
+        function linkPdf() {
+            window.location.href="https://www.def-finance.com/data/DEFWhitePapers.pdf";
+        }
+        // 顶部导航栏 跳转链接到领取空投页面
+        function linkSource() {
+            window.location.href="https://etherscan.io/address/0xf039e6cddd0d87cba23f66bebf94525632feb302#code";
+        }
+        // 顶部导航栏 跳转链接到github
+        function linkTwitter() {
+            window.location.href="https://twitter.com/DEF_Finance0";
+        }
+        // 顶部导航栏 跳转链接到github
+        function linkTelegram() {
+            window.location.href="https://t.me/DEF_Finance";
+        }
+        // 顶部导航栏 跳转链接到github
+        function linkGithub() {
+            window.location.href="https://github.com/Decentralized-Finance/DEFContract/blob/main/DEFContract.sol";
+        }
+
+        if( getCookie("userLanguage") == 'en'){
+            $('#languages').text('中文简体')
+        }else{
+            $('#languages').text('English')
+        }
+    </script>
+</body>
+
+</html>

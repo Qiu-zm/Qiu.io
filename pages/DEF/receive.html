@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="./css/buytoken.css">
+    <title>receive</title>
+    <link rel="shortcut icon" href="./images/shortcut.png">
+</head>
+
+<body>
+    <header class="center receiveHear">
+        <img class="receiveBanner" src="./images/receiveBanner.png" alt="">
+        <span class="bannerTitle i18n" name='receiveHear1'>Receive airdrop</span>
+    </header>
+    <section class="buyList center receiveBox">
+        <div class="receivewid">
+            <!-- <div class="receiveInp">
+                <img class="receiveImg" src="./images/receiveIcon.png" alt="">
+                <input class="receiveInput" placeholder="ETH address" type="text">
+            </div> -->
+            <div class="i18n" name='receiveHear2'>Each user can receive 500 DEF airdrop rewards.</div>
+            <p id="username" class="receiveText"></p>
+            <!-- <input type="text" id="kongtou" class="receiveBut" readonly="readonly" value="Receive airdrop"> -->
+            <div id="kongtou" class="receiveBut i18n" name='receiveHear4' >Receive airdrop</div>
+            <a href="./index.html" class="receiveBut receiveColor i18n" name='receiveHear3'>Back</a>
+        </div>
+    </section>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/web3_1.2.6.min.js"></script>
+<!-- 空头abi -->
+<script src="./js/kongtouabi.js"></script>
+<!-- 众筹abi -->
+<script src="./js/zhongchouabi.js"></script>
+<!-- 引入国际化 -->
+<script src="./js/jquery.i18n.properties.min.js"></script>
+<!-- 加载国际化 -->
+<script src="./js/language.js"></script>
+<script>
+    var web3 = initWeb3();
+    var kongtou;
+    var zhongchou;
+    web3.eth.getAccounts((error, accounts) => {
+        web3.eth.defaultAccount = accounts[0];
+        if (!web3.eth.defaultAccount) {
+            alert("Unable to connect to wallet address")
+        } else {
+            // console.log('地址', web3.eth.defaultAccount)
+            // 空头
+            kongtou = new web3.eth.Contract( kongtou(), kongtouhy())
+            // 众筹
+            zhongchou = new web3.eth.Contract( zhongchou(), zhongchouhy())
+
+            // 判断是否已经领取过空投
+            kongtou.methods.iskongtou().call(function (err, res) { //方法名或变量后面()括号不可少
+                // 显示账号
+                document.getElementById('username').innerHTML = `Wallet address：${web3.eth.defaultAccount}`;
+                // console.log(res);
+                // 如果是true 领取过 禁止领取
+                if (res) {
+                    // 禁用按钮
+                    document.getElementById('kongtou').setAttribute('disabled', 'disabled');
+                    document.getElementById('kongtou').classList.add('receiveDis');
+                    document.getElementById('kongtou').value = 'Already received';
+                } else {
+                    // 查看代币余额
+                    zhongchou.methods.balanceOf(web3.eth.defaultAccount).call(function(error, result){
+                        if(!error) {
+                            // 自己的代币余额
+                            let balanceOfValue = web3.utils.fromWei(result, 'ether');
+                            // 判断数量 是否可以点击领取空投
+                            kongtou.methods.getMinTokenAmount().call()
+                                .then(res=> {
+                                    let getMinTokenAmountVlue = web3.utils.fromWei(res, 'ether');
+                                    // 如果代币余额小于数量 则禁用按钮
+                                    if (balanceOfValue < getMinTokenAmountVlue) {
+                                        // console.log('不能点击');
+                                        // 禁用按钮
+                                        document.getElementById('kongtou').setAttribute('disabled', 'disabled');
+                                        document.getElementById('kongtou').classList.add('receiveDis');
+                                        document.getElementById('kongtou').value = `Need to hold${getMinTokenAmountVlue}Tokens can receive airdrops`
+                                    }
+                                    // console.log(getMinTokenAmountVlue, balanceOfValue);
+                                }).catch(err =>{
+                                    console.log("点击失败")
+                                })
+                        } else {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        }
+    })
+
+    function initWeb3() {
+        var web3;
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            // 请求用户授权
+            window.ethereum.enable();
+        } else if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            console.log(web3.eth.defaultAccount);
+        } else {
+            // set the provider you want from Web3.providers
+            console.log('本地?');
+            web3 = new Web3(new Web3.providers.HttpProvider("https://hecochain.com"));
+        }
+        return web3;
+    }
+    // 领取空投
+    $('#kongtou').click(function () {
+        // 最大领取空投数量
+        let maxkongtou = '',
+        // 已领取空投数量
+            yikongtou = '';
+        // 查询空投数量上限
+        kongtou.methods.maxKongtouAmount().call()
+            .then(res=> {
+                maxkongtou = res;
+                if(res){
+                    // 查看已经空投的数量
+                    kongtou.methods.kongtouAmount().call()
+                        .then(ress=> {
+                            console.log('ress =>',ress)
+                            yikongtou = ress;
+                            if (ress) {
+                                kongtou.methods.iskongtou().call(function (err, res) {
+                                if (res) {
+                                    // 禁用按钮
+                                    document.getElementById('kongtou').setAttribute('disabled', 'disabled');
+                                    document.getElementById('kongtou').classList.add('receiveDis');
+                                    document.getElementById('kongtou').value = 'Already received';
+                                    alert('Already received')
+                                }else {
+                                    // 判断 如果已领取大于等于领取上限 超出领取上限 则不能领取
+                                    if (Number(yikongtou) >= Number(maxkongtou) && Number(maxkongtou) !=0 ) {
+                                        // 禁用按钮
+                                        document.getElementById('kongtou').setAttribute('disabled', 'disabled');
+                                        document.getElementById('kongtou').classList.add('receiveDis');
+                                        document.getElementById('kongtou').value = 'Receipt limit exceeded';
+                                        return;
+                                    }
+                                        web3.eth.getGasPrice().then( GasPrice =>{
+                                            kongtou.methods.kongtou(zhongchouhy()).estimateGas({
+                                                from: web3.eth.defaultAccount
+                                            }).then( res =>{
+                                                    kongtou.methods.kongtou(zhongchouhy()).send({
+                                                        from: web3.eth.defaultAccount,
+                                                        gas:res,
+                                                        gasPrice:GasPrice,
+                                                    },
+                                                    function (error, res) {
+                                                        if (res) {
+
+                                                            // 禁用按钮
+                                                            document.getElementById('kongtou').setAttribute('disabled', 'disabled');
+                                                            document.getElementById('kongtou').classList.add('receiveDis');
+                                                            document.getElementById('kongtou').value = 'Already received';
+                                                            alert('Received successfully');
+                                                        }
+                                                    });
+                                            }).catch( err =>{
+                                                console.log('获取失败 =>',err)
+                                            })
+                                            
+                                            // })
+                                            
+                                        })
+                                    // })
+                                    
+                                }
+                            })
+                            }
+                        })
+                }
+            })
+        
+       
+    });
+</script>
+
+</html>
